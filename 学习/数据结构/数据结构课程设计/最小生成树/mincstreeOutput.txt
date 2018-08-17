@@ -1,0 +1,7 @@
+fg 2
+ac 3
+ef 3
+ab 4
+hd 4
+cd 5
+dg 5
