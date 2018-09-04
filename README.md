@@ -5,6 +5,7 @@
 [离散数学](https://github.com/FengGuanxi/HDU-Experience/tree/master/%E5%AD%A6%E4%B9%A0/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6)增加了一份考试试卷和课本课后答案</br>
 [数据结构](https://github.com/FengGuanxi/HDU-Experience/tree/master/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)增加了一份样卷及其对应答案</br>
 [线性代数](https://github.com/FengGuanxi/HDU-Experience/tree/master/%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%AF%95%E5%8D%B7)增加了两份2010年试卷</br>
+[高等数学]（https://github.com/FengGuanxi/HDU-Experience/tree/master/%E5%AD%A6%E4%B9%A0/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6）增加了一份2006年高数上的样卷</br>
 </br>
 欢迎提供资料或者建议(有偿)，邮箱（1007384211@qq.com）联系我</br>
 自愿鼓励(所有捐赠均将被用于购买学习资料)~
