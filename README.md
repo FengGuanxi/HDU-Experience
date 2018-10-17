@@ -1,9 +1,9 @@
 ### 最近更新：</br>
+[电子书](https://github.com/FengGuanxi/HDU-Experience/tree/master/%E5%AD%A6%E4%B9%A0/%E7%94%B5%E5%AD%90%E4%B9%A6)增加了《数字图像处理 冈萨雷斯（中）第三版》 2018/10/17</br>
 [读书笔记](https://github.com/FengGuanxi/HDU-Experience/tree/master/%E6%9D%82%E9%A1%B9)增加了读书笔记的班级填报表格 2018/10/13</br>
 [读书笔记](https://github.com/FengGuanxi/HDU-Experience/tree/master/%E6%9D%82%E9%A1%B9/%E5%85%B3%E4%BA%8E%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0)增加了读书笔记的具体要求 2018/10/10 </br>
 [数学建模](https://github.com/FengGuanxi/HDU-Experience/tree/master/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1)增加中南大学集训论文下载网址 2018/10/10</br>
 [数学建模](https://github.com/FengGuanxi/HDU-Experience/tree/master/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1)增加了一份数学建模README说明 2018/10/4</br>
-[杭电考研](https://github.com/FengGuanxi/HDU-Experience/tree/master/%E5%AD%A6%E4%B9%A0/%E8%80%83%E7%A0%94/%E6%9D%AD%E5%B7%9E%E7%94%B5%E5%AD%90%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6)增加了计算机学院2019年保研介绍及其各学院保研名额分配 2018/9/29</br>
 </br>
 本项目意为向所有杭电学子提供各种信息，学习资料以及生活经验等。</br>
 薪火相传，只为更好的杭电。</br>
