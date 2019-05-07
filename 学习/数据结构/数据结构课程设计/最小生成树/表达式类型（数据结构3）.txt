@@ -1,0 +1,411 @@
+#include "iostream.h"
+#include "stdio.h"
+#include "malloc.h"
+
+#define TRUE 1
+#define FALSE 0
+#define OK 1
+#define OVERFLOW -1
+#define ERROR 0
+
+#define STACK_INIT_SIZE 100
+#define STACKINCREMENT 10
+///数据类型定义
+typedef int Status;
+typedef struct BiTNode
+{
+int tdata;//放int数据，当有数字时，data='&'，用'&'标志结点放的是数字
+char data;//放字母和运算符号
+struct BiTNode *lchild,*rchild;
+}BiTNode,*BiTree;
+///栈的数据类型定义
+typedef char SElemType;
+typedef struct
+{
+SElemType *base;
+SElemType *top;
+int stacksize;
+}SqStack; 
+////栈的函数声明
+Status IntiStack(SqStack &S);
+int StackLength(SqStack S);
+Status Push(SqStack &S,char e);
+char Pop(SqStack &S);
+Status DestroyStack(SqStack &S);
+///////////////////////////////
+void input(); //输入表达式
+Status IntiBiTree(BiTree &T);//二叉树的初始化
+Status DestroyBiTree(BiTree &T);//二叉树的销毁
+Status CreateBiTree(BiTree &T);//表达式建立二叉树
+Status PreOrderTraverse(BiTree T,Status (* Visit)(BiTNode *e));//先序遍历
+int pow10(int b);//10的b方
+//////////////////////////
+Status PrintBiTree(BiTree e);//树的先序输出
+Status MergeConst(BiTree &T);//合并(一次)
+Status MergeConst5(BiTree &T);//设五次内能合并完整
+Status Assign(BiTree &T);//变量附值
+Status assignnew(BiTree &T,char b,int a);
+Status Value(BiTree &T);//符值后求值
+BiTree CompoundExpr(char P,BiTree T1,BiTree T2); //复合表达式
+void writeExpr(BiTree T);//表达式的正确输出（有带括号的中缀式）
+int In(char c,char *op);//比较字符是否为运算符，是则返回1，否则0
+int Precede(char op,char c);//比较运算符的优先级
+////////////////////////////
+char in[100];//假设表达式最多有100个字符，“#”表示输入完毕
+SqStack S; //借用该栈来实现阿拉伯数字的输入
+int a=0; //定义该全局变量来一个一个地初始化树
+///////////////////
+char OP[5]={'+','-','*','/','^'};//运算符
+int precede[5][5]={//检查运算符排序方法
+2,2,2,2,2,
+1,1,2,2,2,
+1,1,2,2,1,
+1,1,1,1,1,
+1,1,1,1,1,};
+BiTree t;
+
+/////////////////////
+void main()
+{
+
+cout<<" ---------------------------------"<<endl;
+cout<<" | 表达式类型的实现 |"<<endl;
+cout<<" ---------------------------------"<<endl;
+BiTree T,T1,T2,Te;IntiStack(S);//初始化
+IntiBiTree(T); IntiBiTree(T1);//初始化
+IntiBiTree(T2); IntiBiTree(Te);IntiBiTree(t);//初始化
+cout<<"____________________________________"<<endl;
+cout<<"|注意：以“#”结束表达式的输入； |"<<endl;
+cout<<"| 以“,”隔开两个数字的输入。 |"<<endl;
+cout<<"——————————————————"<<endl;
+
+cout<<"*********************************************"<<endl;
+cout<<" 请输入表达式的正确前缀表达式：";
+cout<<"-->";
+input();//调用输入函数
+CreateBiTree(T); //调用表达式建立二叉树函数
+cout<<" 你输入为：";
+PreOrderTraverse(T,PrintBiTree);
+cout<<endl;
+cout<<" 中缀式为：";
+writeExpr(T);//调用中序输出函数
+cout<<endl;
+
+cout<<" 常量合并后为：";//若表达式里有可以合并的数字，则调用后可以看到合并的结果
+MergeConst5(T);
+writeExpr(T);
+cout<<endl;
+
+t=T;
+Assign(T); //调用附值函数给每个变量附值
+cout<<" 附值后的结果为：";
+Value(t); //调用求值函数
+cout<<endl;
+
+cout<<"*********************************************"<<endl;
+cout<<endl;
+cout<<"*********************************************"<<endl;
+char P;
+cout<<"--------------两个表达式的复合---------------"<<endl;
+cout<<" 请输入要复合的符号（+ - * / ^）--> "; cin>>P;
+cout<<" 请输入要复合的第一个表达式--> ";
+
+a=0;
+input(); //应从in[100]的0位开始
+CreateBiTree(T1);
+cout<<" 请输入要复合的第二个表达式--> ";
+
+a=0; //应从in[100]的0位开始
+input();
+CreateBiTree(T2); 
+Te=CompoundExpr(P,T1,T2);//调用复合函数
+cout<<" 两个表达式复合后的结果为：";
+writeExpr(Te);//复合后中缀输出
+cout<<endl;
+cout<<"*********************************************"<<endl;
+DestroyBiTree(T);
+DestroyBiTree(T1);
+DestroyBiTree(T2);
+DestroyBiTree(Te);
+DestroyStack(S);
+}
+
+
+///////////////函数定义
+Status IntiBiTree(BiTree &T)
+{
+T=NULL;
+return OK;
+}
+Status DestroyBiTree(BiTree &T)
+{ 
+free(T);
+T=NULL;
+return OK;
+}
+void input() //输入表达式的函数
+{ 
+char d='a';
+for(int b=0;d!='#';b++)
+{ 
+cin>>d;
+in[b]=d;//附给in[100]数组
+}
+} 
+Status CreateBiTree(BiTree &T)
+{ 
+while(in[a]!='#')//以#结束
+{
+if(in[a]=='-'||in[a]=='+'||in[a]=='*'||in[a]=='/'||in[a]=='^')//当字符为运算符时
+{
+if (!(T=(BiTNode *)malloc(sizeof (BiTNode)))) return ERROR;
+T->data=in[a];
+a++;
+CreateBiTree(T->lchild);//运算符需要建立它的左右孩子
+CreateBiTree(T->rchild);
+return OK; 
+}
+else
+{
+if(in[a]=='0'||in[a]=='1'||in[a]=='2'||in[a]=='3'||in[a]=='4'||
+in[a]=='5'||in[a]=='6'||in[a]=='7'||in[a]=='8'||in[a]=='9')//当字符是阿拉伯数字时
+{
+Push(S, in[a]);//建一个栈来放阿拉伯数字
+if(in[a+1]!='0'&&in[a+1]!='1'&&in[a+1]!='2'&&in[a+1]!='3'&&in[a+1]!='4'&&
+in[a+1]!='5'&&in[a+1]!='6'&&in[a+1]!='7'&&in[a+1]!='8'&&in[a+1]!='9')//如果下一个不是阿拉伯数字
+{
+if (!(T=(BiTNode *)malloc(sizeof (BiTNode)))) return ERROR;
+else 
+{
+T->data='&';//标志表示放的是int型的数据
+int length=StackLength(S) ;int sum=0;
+for(;S.base!=S.top;)
+{ //把栈里的阿拉伯数字转换为int型的数据放到T->tdata，并T->data='&'来标志结点放的是数字
+char d=Pop(S);
+int h=length-(S.top-S.base+1);
+int k=pow10(h);
+sum+=(d-'0')*k;
+}
+T->tdata=sum;
+T->lchild=T->rchild=NULL;
+if(in[a+1]==',')
+a=a+2;
+else
+a++;
+return OK;
+} 
+}
+else a++;//a++时in[100]的数组一个一个往后移动
+} 
+else 
+{ //当字符是字母时，直接T->data等于字母，并初始化T->tdata=0。
+if (!(T=(BiTNode *)malloc(sizeof (BiTNode)))) return ERROR;
+T->data=in[a]; 
+T->tdata=0;//变量初始化为0
+T->lchild=T->rchild=NULL;
+a++;
+return OK; 
+}
+}
+}
+return OK;
+}
+
+int pow10(int b)///10的b 次方
+{
+int c=1;
+for(int q=1;q<=b;q++)c=c*10;
+return c;
+}
+Status PreOrderTraverse(BiTree T,Status (* Visit)(BiTree e))
+{//先序遍历
+if(T){
+Visit(T);
+PreOrderTraverse(T->lchild,Visit);
+PreOrderTraverse(T->rchild,Visit); return OK;
+} return OK;
+}
+Status MergeConst(BiTree &T)////合并函数
+{
+if(T->lchild||T->rchild)//若左右孩子不空，即为运算符
+{
+if(T->lchild->data=='&'&&T->rchild->data=='&')
+{ //判断左右孩子放的是“数字”还是字母。若都是数字就合并。
+switch(T->data)
+{
+case '+': T->tdata=(T->lchild->tdata)+(T->rchild->tdata);break;
+case '-': T->tdata=(T->lchild->tdata)-(T->rchild->tdata);break;
+case '*': T->tdata=(T->lchild->tdata)*(T->rchild->tdata);break;
+case '/': T->tdata=(T->lchild->tdata)/(T->rchild->tdata);break;
+case '^': for(int n=1,int c=T->lchild->tdata;n<T->rchild->tdata;n++)
+c*=T->lchild->tdata; T->tdata=c;break;
+}
+T->data='&';
+free(T->lchild);//合并后释放左右孩子结点，并指向NULL
+free(T->rchild);
+T->lchild=T->rchild=NULL;
+}
+else
+{
+MergeConst(T->lchild);
+MergeConst(T->rchild);
+}
+return OK;
+}
+return OK;
+}
+Status MergeConst5(BiTree &T)//设五次内能合并完整
+{ 
+for(int x=0;x<5;x++)
+MergeConst(T);
+return OK;
+}
+Status PrintBiTree(BiTNode *T)//输出函数
+{
+if(T->data=='&')
+cout<<T->tdata;
+else 
+cout<<T->data;
+return OK;
+}
+Status Assign(BiTree &T)//附值函数
+{
+int a;
+if(T){
+if(T->data!='&'&&T->data!='-'&&T->data!='+'&&
+T->data!='*'&&T->data!='/'&&T->data!='^')
+{//假如是字母的话
+cout<<" 请给"<<T->data<<" 附值：-->";cin>>a;
+// T->tdata=a;T->data='&';//附值后把结点标志为'&'存放的是数字
+assignnew(t,T->data,a);
+return OK;
+}
+else
+{
+Assign(T->lchild);//递归左右孩子
+Assign(T->rchild);
+}
+return OK;
+}
+return OK;
+}
+Status assignnew(BiTree &T,char b,int a )//附值函数
+{
+if(T){
+if(T->data==b)
+{//假如是字母的话
+T->tdata=a;T->data='&';//附值后把结点标志为'&'存放的是数字
+return OK;
+}
+else
+{
+assignnew(T->lchild,b,a);//递归左右孩子
+assignnew(T->rchild,b,a);
+}
+return OK;
+}
+return OK;
+}
+
+Status Value(BiTree &T)//求值函数
+{//求值函数只要运算符结点调用MergeConst(T)函数就行了
+for(;T->lchild&&T->lchild;)
+MergeConst(T);//在符值后调用合并函数
+PreOrderTraverse(T,PrintBiTree);//该输出就为表达式的值
+return OK;
+}
+BiTree CompoundExpr(char P,BiTree T1,BiTree T2)
+{//复合函数，只要把运算符的左右孩子等于T1和T2就行了。
+BiTree T;IntiBiTree(T);
+if (!(T=(BiTNode *)malloc(sizeof (BiTNode)))) return ERROR;
+T->data=P;
+T->lchild=T1;T->rchild=T2;
+return T;
+}
+int In(char c,char *op)//比较字符是否为运算符，是则返回1，否则0
+{
+int i=0;
+while(i<5)
+if(c==op[i++]) return 1;
+return 0;
+}
+
+int Precede(char op,char c)//比较运算符的优先级
+{
+int pos_op;
+int pos_c;
+int i;
+for(i=0;i<5;i++)
+{
+if(op==OP[i]) pos_op=i;
+if(c==OP[i]) pos_c=i;
+}
+switch(precede[pos_op][pos_c])
+{
+case 1: return 1;
+case 2: return 0;
+}
+}
+
+void writeExpr(BiTree T)//中序输出
+{
+int r=0;int l=0;
+if (T)
+{
+if(T->lchild)
+{
+if (In(T->lchild->data,OP)&&
+(Precede(T->data,T->lchild->data)))
+{//判断左孩子是不是运算符，若是运算符，则在判断它跟T的运算符的优先级
+l=1;cout<<"(";//添加括弧
+}
+writeExpr(T->lchild);
+if(l) cout<<")"; 
+}
+
+if(T->data=='&') cout<<T->tdata;
+else cout<<T->data;
+if(T->rchild)
+{
+if (In(T->rchild->data,OP)&&(Precede(T->data,T->rchild->data)))
+{//判断右孩子是不是运算符，若是运算符，则在判断它跟T的运算符的优先级
+r=1;
+cout<<"(";//添加括弧
+}
+writeExpr(T->rchild);
+if (r) cout<<")"; 
+}
+
+}
+}
+
+/////////////栈函数定义
+Status IntiStack(SqStack &S) //初始化栈函数
+{S.base=(char *)malloc(STACK_INIT_SIZE*sizeof(char));
+if (!S.base) return ERROR;
+S.top=S.base;S.stacksize=STACK_INIT_SIZE;return OK;}
+
+Status DestroyStack(SqStack &S) //销毁函数
+{free(S.base);S.top=S.base=NULL;return OK;}
+
+int StackLength(SqStack S) //求栈存储的长度函数
+{int i=S.top-S.base;return i;}
+
+Status Push(SqStack &S, char e) //把e插入到栈顶函数
+{
+if (S.top-S.base>=S.stacksize)
+{
+S.base=(SElemType *)realloc(S.base,
+(S.stacksize+STACKINCREMENT)*sizeof(SElemType));//当栈满的时候重新分配空间
+if (!S.base) return ERROR;
+S.top=S.base+S.stacksize;
+S.stacksize+=STACKINCREMENT;
+*S.top++=e; return OK;}
+*S.top++=e; return OK;
+}
+
+char Pop(SqStack &S)//删除栈顶并用e返回 函数
+{if(S.top==S.base) return ERROR;
+char e=*--S.top;return e;}
+
+搜索更多相关主题的帖子: 数据结

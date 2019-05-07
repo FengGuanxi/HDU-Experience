@@ -1,0 +1,24 @@
+8
+14
+a
+b
+c
+d
+e
+f
+g
+h
+a b 4
+a c 3
+b e 9
+b d 5
+b c 5
+c d 5
+c h 5
+h g 6
+h d 4
+d e 7
+d f 6
+d g 5
+e f 3
+f g 2
