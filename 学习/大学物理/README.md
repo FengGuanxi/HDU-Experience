@@ -12,6 +12,10 @@
 
 #### 期末卷
 
+2006年大学物理B A卷
+
+未知年份大学物理B B卷
+
 2013-2014年试卷（附答案）链接：https://pan.baidu.com/s/1dTlyqcaTyI5OSnnJZwfddg 提取码：gpe0
 
 2011-2012年试卷（附部分答案）链接：https://www.jianguoyun.com/p/DTiTIZUQ5_rsBhjWupgB 
