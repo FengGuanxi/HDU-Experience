@@ -1,0 +1,3 @@
+[09年6月A卷](https://github.com/FengGuanxi/HDU-Experience/blob/master/%E5%AD%A6%E4%B9%A0/%E7%94%B5%E8%B7%AF%E4%B8%8E%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80/%E8%AF%95%E5%8D%B7/09%E5%B9%B46%E6%9C%88A%E5%8D%B7.doc)</br>
+[10年上学期A卷(附部分答案)](https://github.com/FengGuanxi/HDU-Experience/blob/master/%E5%AD%A6%E4%B9%A0/%E7%94%B5%E8%B7%AF%E4%B8%8E%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80/%E8%AF%95%E5%8D%B7/10%E5%B9%B4%E4%B8%8A%E5%AD%A6%E6%9C%9FA%E5%8D%B7(%E9%99%84%E9%83%A8%E5%88%86%E7%AD%94%E6%A1%88).doc)</br>
+2016年试卷：链接：https://pan.baidu.com/s/16ShleYFKRCHHWPm7YIs5og   提取码：321q 
