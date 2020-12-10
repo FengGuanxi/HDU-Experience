@@ -54,7 +54,7 @@
 自愿鼓励(所有捐赠均将被用于购买学习资料)~
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/FengGuanxi/GitHub-/master/%E6%94%AF%E4%BB%98%E5%AE%9D.jpg" height="300px" alt="支付宝打赏" >
+  <img src="https://cdn.nlark.com/yuque/0/2020/png/662957/1606920788794-288ddf7d-0a79-4e99-a0a5-71603def1e81.png" height="300px" alt="支付宝打赏" >
   <img src="https://github.com/FengGuanxi/GitHub-/blob/master/%E5%86%AF%E5%86%A0%E7%8E%BA%E7%9A%84%E7%BA%A2%E5%8C%85%E4%BA%8C%E7%BB%B4%E7%A0%81.PNG" height="300px" alt="扫我领红包" >
 </div>
 
