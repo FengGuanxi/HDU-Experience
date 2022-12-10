@@ -1,0 +1,7 @@
+Before Pickup Left Factor:
+A->abC|abcD|abcE
+
+After Pickup Left Factor:
+A->abA'
+A'->C|cA''
+A''->D|E

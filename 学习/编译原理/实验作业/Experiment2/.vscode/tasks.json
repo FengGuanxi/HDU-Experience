@@ -1,0 +1,127 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "生成项目(make)",
+            "type": "shell",
+            "windows": {
+                "options": {
+                    "env": {
+                        "PATH": "${execPath}.mingw64\\bin;${env:PATH}"
+                    }
+                },
+                "command": "cmd.exe /c echo VSCode安装路径-${execPath} ; echo 正在使用makefile文件生成项目 ; cmd.exe /c type \"'${execPath}.tips\\make_tip.txt'\" ; echo '' ; make"
+            }, 
+            "linux": {
+                "command": ""
+            },
+            "args": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "group": "make"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "安装python包",
+            "type": "shell",
+            "windows": {
+                "command": "pip install -i https://mirrors.aliyun.com/pypi/simple/ -r requirements.txt"
+            }, 
+            "linux": {
+                "command": ""
+            },              
+            "args": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "group": "setup_pip_package"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "测试(test)",
+            "type": "shell",
+            "windows": {
+                "options": {
+                    "env": {
+                        "PATH": "${execPath}.mingw64\\bin;${env:PATH}"
+                    }
+                },
+                "command": "cmd.exe /c type \"'${execPath}.tips\\python_tip.txt'\" ; echo '' ; python .vscode\\test.py .\\app.exe"
+            }, 
+            "linux": {
+                "command": ""
+            },                
+            "args": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "group": "test"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "清理项目(make clean)",
+            "type": "shell",
+            "windows": {
+                "options": {
+                    "env": {
+                        "PATH": "${execPath}.mingw64\\bin;${env:PATH}"
+                    }
+                },
+                "command": "cmd.exe /c echo VSCode安装路径-${execPath} ; echo '' ; echo 正在使用makefile文件清理项目 ; make clean"
+            }, 
+            "linux": {
+                "command": ""
+            },
+            "args": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "group": "clean"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "提交作业(git push)",
+            "type": "shell",
+            "windows": {
+                "command": "cmd.exe /c type \"'${execPath}.tips\\python_tip.txt'\" ; echo '' ; python .vscode\\gitpush.py"
+            }, 
+            "linux": {
+                "command": ""
+            },  
+            "args": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "group": "git-push"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "内存检测",
+            "type": "shell",
+            "windows": {
+                "options": {
+                    "env": {
+                        "PATH": "${execPath}.DrMemory\\bin64;${execPath}.mingw64\\bin;${env:PATH}"
+                    }
+                },
+                "command": "cmd.exe /c echo VSCode安装路径-${execPath} ; echo '' ; echo 正在使用Dr.Memory检测内存 ; python .vscode/memorycheck.py .\\app.exe"
+            }, 
+            "linux": {
+                "command": ""
+            }, 
+            "args": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "group": "test"
+            },
+            "problemMatcher": "$gcc"
+        }
+    ]
+}

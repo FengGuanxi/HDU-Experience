@@ -1,0 +1,4 @@
+﻿# -*- coding: utf-8 -*-
+###### 不要列出标准库中已包含的包，例如：Math,time等，如果列出将出现如下错误：######
+###### RuntimeError: Package '**' must not be downloaded from pypi ######
+colorama

@@ -1,0 +1,16 @@
+{
+    "files.exclude": {
+        "**/*.git*": true,
+        "**/sonar*": true,
+        "**/valgrind-report.out": true,
+        "**/requirements.txt": true,
+        "**/readonly.lock":true,
+        "**/preopenfile.lock":true,
+    },
+    "files.associations": {
+        "*.demo": "c"
+    },
+    "workbench.editor.enablePreview": false,
+    "C_Cpp.errorSquiggles": "Disabled",	
+    "python.analysis.extraPaths": [".vscode"]
+}

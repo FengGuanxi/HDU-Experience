@@ -1,0 +1,6 @@
+Before Remove Left Recursion:
+A->Aa|bA|c|Ad
+
+After Remove Left Recursion:
+A->bAA'|cA'
+A'->aA'|dA'|$

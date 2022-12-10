@@ -1,0 +1,97 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Demo input1",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/demo.exe",
+            "args": ["<", "input1.txt"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "PATH",
+                    "value": "${execPath}.mingw64\\bin;${env:PATH}"
+                },
+                {
+                    "name": "TEMPLIDENTIFY",
+                    "value": "CPLab07"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "${execPath}.mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "input1",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/app.exe",
+            "args": ["<", "input1.txt"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "PATH",
+                    "value": "${execPath}.mingw64\\bin;${env:PATH}"
+                },
+                {
+                    "name": "TEMPLIDENTIFY",
+                    "value": "CPLab07"
+                }
+            ],
+            "externalConsole": false,
+            "preLaunchTask": "生成项目(make)",
+            "MIMode": "gdb",
+            "miDebuggerPath": "${execPath}.mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Demo toend",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/demo.exe",
+            "args": ["<", "input1.txt"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "PATH",
+                    "value": "${execPath}.mingw64\\bin;${env:PATH}"
+                },
+                {
+                    "name": "TEMPLIDENTIFY",
+                    "value": "CPLab07"
+                },
+                {
+                    "name": "GO_TO_END",
+                    "value": "true"
+                },
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "${execPath}.mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }        
+    ]
+}

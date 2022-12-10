@@ -1,0 +1,16 @@
+exp -> exp addop term
+exp -> term
+addop -> +
+addop -> -
+term -> term mulop factor
+term -> factor
+mulop -> *
+factor -> ( exp )
+factor -> number
+
+The Follow Set:
+Follow(exp) = { $, +, -, ) }
+Follow(addop) = { (, number }
+Follow(term) = { $, +, -, *, ) }
+Follow(mulop) = { (, number }
+Follow(factor) = { $, +, -, *, ) }

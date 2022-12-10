@@ -1,0 +1,4 @@
+# vscode插件会自动打开本文件中列出的文件。可以是项目根目录中的文件，也可以是子目录中的文件（写清楚相对路径即可）
+# 需要在.vscode/settings.json中添加以下设置项"workbench.editor.enablePreview": false，否则在编辑器中无法打开多个文件。
+main.demo
+main.c
